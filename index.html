@@ -154,6 +154,11 @@
             transform: translateY(-3px);
         }
         
+        .song-item.active {
+            background: #e3f2fd;
+            border-left: 4px solid #e74c3c;
+        }
+        
         .song-title {
             font-weight: 700;
             color: #2c3e50;
@@ -218,6 +223,7 @@
             color: #666;
         }
         
+        /* 音乐播放器样式 */
         .music-player {
             background: linear-gradient(135deg, #2c3e50, #34495e);
             color: white;
@@ -234,6 +240,63 @@
         .player-header h3 {
             color: #ffd700;
             font-size: 1.5rem;
+        }
+        
+        .player-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .album-art {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .song-info {
+            flex: 1;
+        }
+        
+        .song-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #ffd700;
+        }
+        
+        .artist-name-small {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            height: 6px;
+            border-radius: 3px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            width: 0%;
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+        
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #bdc3c7;
+            margin-bottom: 20px;
         }
         
         .player-controls {
@@ -264,12 +327,87 @@
             transform: scale(1.1);
         }
         
-        .now-playing {
-            text-align: center;
-            font-style: italic;
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+        }
+        
+        .play-btn:hover {
+            background: linear-gradient(to right, #2980b9, #27ae60);
+        }
+        
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             margin-top: 15px;
+        }
+        
+        .volume-slider {
+            flex: 1;
+            height: 5px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #3498db;
+            cursor: pointer;
+        }
+        
+        .playlist {
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+        }
+        
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .playlist-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .playlist-item.active {
+            background: rgba(52, 152, 219, 0.3);
+        }
+        
+        .playlist-item-index {
+            width: 25px;
+            text-align: center;
             color: #bdc3c7;
-            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .playlist-item-info {
+            flex: 1;
+        }
+        
+        .playlist-item-title {
+            font-weight: 600;
+        }
+        
+        .playlist-item-duration {
+            font-size: 0.8rem;
+            color: #bdc3c7;
         }
         
         .footer {
@@ -315,6 +453,16 @@
             
             .representative-works {
                 grid-template-columns: 1fr;
+            }
+            
+            .player-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .album-art {
+                margin-right: 0;
+                margin-bottom: 15px;
             }
         }
         
@@ -378,68 +526,10 @@
                 
                 <div class="card">
                     <h2>代表作品</h2>
-                    <p class="intro-text">基于您提供的文档和链接内容，沙漠丶倾城的音乐作品以情感深度和旋律感染力著称，以下为部分代表作品：</p>
+                    <p class="intro-text">沙漠丶倾城的音乐作品以情感深度和旋律感染力著称，以下为部分代表作品：</p>
                     
-                    <div class="representative-works">
-                        <div class="song-item song-from-link">
-                            <div class="song-title">《数星星等你》</div>
-                            <div class="song-desc">根据<span class="link-highlight">酷我音乐链接内容</span>，这首歌曲收录在专辑《如果那天没有错过》中，发布于2025-12-31</div>
-                        </div>
-                        
-                        <div class="song-item song-from-link">
-                            <div class="song-title">《渡不出人间苦海》</div>
-                            <div class="song-desc">根据<span class="link-highlight">酷狗音乐链接内容</span>，这首歌曲收录在专辑《伤感情歌 知心知伤》中</div>
-                        </div>
-                        
-                        <div class="song-item">
-                            <div class="song-title">《我是你可有可无的人》</div>
-                            <div class="song-desc">深情诉说感情中的无奈与心酸</div>
-                        </div>
-                        
-                        <div class="song-item">
-                            <div class="song-title">《爱而不得的那个人》</div>
-                            <div class="song-desc">表达无法拥有所爱之人的遗憾</div>
-                        </div>
-                        
-                        <div class="song-item">
-                            <div class="song-title">《抉择》</div>
-                            <div class="song-desc">面对人生重要选择的内心挣扎</div>
-                        </div>
-                        
-                        <div class="song-item">
-                            <div class="song-title">《雨季的念》</div>
-                            <div class="song-desc">雨季中思念与回忆的情感交织</div>
-                        </div>
-                        
-                        <div class="song-item">
-                            <div class="song-title">《月下长安》</div>
-                            <div class="song-desc">古典意境与现代情感的结合</div>
-                        </div>
-                        
-                        <div class="song-item">
-                            <div class="song-title">《再听已是曲中人》</div>
-                            <div class="song-desc">时光流转中对过往情感的追忆</div>
-                        </div>
-                        
-                        <div class="song-item">
-                            <div class="song-title">《那天下雨了》</div>
-                            <div class="song-desc">根据<span class="link-highlight">酷我音乐链接内容</span>，这首歌曲收录在专辑《如果那天没有错过》中</div>
-                        </div>
-                        
-                        <div class="song-item">
-                            <div class="song-title">《不过尔尔》</div>
-                            <div class="song-desc">根据<span class="link-highlight">酷狗音乐链接内容</span>，这首歌曲收录在专辑《如果那天没有错过》中</div>
-                        </div>
-                        
-                        <div class="song-item">
-                            <div class="song-title">《我以为我能忘》</div>
-                            <div class="song-desc">根据<span class="link-highlight">酷狗音乐链接内容</span>，这首歌曲收录在专辑《如果那天没有错过》中</div>
-                        </div>
-                        
-                        <div class="song-item">
-                            <div class="song-title">《如果没有如果》</div>
-                            <div class="song-desc">根据<span class="link-highlight">酷狗音乐和酷我音乐链接内容</span>，这首歌曲收录在专辑《如果那天没有错过》中</div>
-                        </div>
+                    <div class="representative-works" id="songList">
+                        <!-- 歌曲将通过JavaScript动态生成 -->
                     </div>
                     
                     <p style="margin-top: 20px; font-style: italic; color: #666;">
@@ -451,7 +541,7 @@
             <div class="right-column">
                 <div class="card">
                     <h2>音乐平台</h2>
-                    <p>基于您提供的链接，沙漠丶倾城的作品在以下各大音乐平台均可收听：</p>
+                    <p>沙漠丶倾城的作品在以下各大音乐平台均可收听：</p>
                     
                     <div class="music-platforms">
                         <a href="https://y.qq.com/n/ryqq_v2/search?w=%E6%B2%99%E6%BC%A0%E4%B8%B6%E5%80%BE%E5%9F%8E&t=song&remoteplace=txt.yqq.top" target="_blank" class="platform">
@@ -510,52 +600,51 @@
                     </p>
                 </div>
                 
-                <div class="card">
-                    <h2>音乐信息</h2>
-                    <p>基于链接内容提取的歌曲信息：</p>
-                    
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                        <h4>《数星星等你》详细信息</h4>
-                        <p style="margin-top: 10px; font-size: 0.95rem;">
-                            <strong>来源：</strong> 酷我音乐链接<br>
-                            <strong>专辑：</strong> 《如果那天没有错过》<br>
-                            <strong>发行时间：</strong> 2025-12-31<br>
-                            <strong>作词/作曲：</strong> 张斌<br>
-                            <strong>歌词片段：</strong> "夜色漫过窗台，像无声的叹息..."
-                        </p>
-                    </div>
-                    
-                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px;">
-                        <h4>酷狗音乐歌曲列表</h4>
-                        <p style="margin-top: 10px; font-size: 0.95rem;">
-                            <strong>来源：</strong> 酷狗音乐链接<br>
-                            <strong>歌曲数量：</strong> 多首歌曲<br>
-                            <strong>代表歌曲：</strong> 《一起去看雪吧》《梦里啥都有》《我以为我能忘》等<br>
-                            <strong>专辑：</strong> 《如果那天没有错过》《伤感情歌 知心知伤》等
-                        </p>
-                    </div>
-                </div>
-                
+                <!-- 音乐播放器 -->
                 <div class="music-player">
                     <div class="player-header">
-                        <h3>音乐试听</h3>
-                        <p>点击播放按钮试听歌曲</p>
+                        <h3>音乐播放器</h3>
+                        <p>点击播放按钮欣赏沙漠丶倾城的音乐作品</p>
+                    </div>
+                    
+                    <div class="player-info">
+                        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                             alt="专辑封面" class="album-art" id="albumArt">
+                        <div class="song-info">
+                            <div class="song-name" id="currentSongTitle">数星星等你</div>
+                            <div class="artist-name-small" id="currentArtistName">沙漠丶倾城</div>
+                            <div class="song-desc" id="currentSongDesc">专辑: 《如果那天没有错过》</div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span>
+                        <span id="totalTime">0:00</span>
                     </div>
                     
                     <div class="player-controls">
-                        <button class="player-btn" id="prevBtn">
+                        <button class="player-btn" id="prevBtn" title="上一首">
                             <i class="fas fa-step-backward"></i>
                         </button>
-                        <button class="player-btn" id="playBtn">
+                        <button class="player-btn play-btn" id="playBtn" title="播放/暂停">
                             <i class="fas fa-play" id="playIcon"></i>
                         </button>
-                        <button class="player-btn" id="nextBtn">
+                        <button class="player-btn" id="nextBtn" title="下一首">
                             <i class="fas fa-step-forward"></i>
                         </button>
                     </div>
                     
-                    <div class="now-playing" id="nowPlaying">
-                        准备播放: 《数星星等你》
+                    <div class="volume-control">
+                        <i class="fas fa-volume-up"></i>
+                        <input type="range" min="0" max="100" value="80" class="volume-slider" id="volumeSlider" title="音量">
+                    </div>
+                    
+                    <div class="playlist" id="playlist">
+                        <!-- 播放列表将通过JavaScript动态生成 -->
                     </div>
                 </div>
             </div>
@@ -573,119 +662,401 @@
             </div>
             
             <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">
-                本页面基于提供的文档和链接内容制作，信息来源于QQ音乐、酷狗音乐、酷我音乐、网易云音乐、汽水音乐等平台
+                本页面内容制作，信息来源于QQ音乐、酷狗音乐、酷我音乐、网易
             </p>
         </footer>
     </div>
 
     <script>
+        // 音乐库数据
         const songs = [
             { 
+                id: 1,
                 title: "数星星等你", 
+                artist: "沙漠丶倾城",
                 desc: "根据酷我音乐链接内容，这首歌曲收录在专辑《如果那天没有错过》中，发布于2025-12-31",
-                lyrics: "夜色漫过窗台，像无声的叹息..."
+                album: "如果那天没有错过",
+                duration: "3:45",
+                src: "https://music.163.com/song/media/outer/url?id=2103329257.mp3",
+                cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            },
+            { 
+                id: 2,
+                title: "渡不出人间苦海", 
+                artist: "沙漠丶倾城",
+                desc: "根据酷狗音乐链接内容，这首歌曲收录在专辑《伤感情歌 知心知伤》中",
+                album: "伤感情歌 知心知伤",
+                duration: "4:12",
+                src: "https://music.163.com/song/media/outer/url?id=2103329257.mp3",
+                cover: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            },
+            { 
+                id: 3,
+                title: "一起去看雪吧", 
+                artist: "沙漠丶倾城",
+                desc: "根据酷狗音乐链接内容，这首歌曲是沙漠丶倾城的作品",
+                album: "冬日情歌集",
+                duration: "3:28",
+                src: "https://music.163.com/song/media/outer/url?id=2103329257.mp3",
+                cover: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            },
+            { 
+                id: 4,
+                title: "我以为我能忘", 
+                artist: "沙漠丶倾城",
+                desc: "根据酷狗音乐链接内容，这首歌曲收录在专辑《如果那天没有错过》中",
+                album: "如果那天没有错过",
+                duration: "4:05",
+                src: "https://music.163.com/song/media/outer/url?id=2103329257.mp3",
+                cover: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            },
+            { 
+                id: 5,
+                title: "如果那天没有错过", 
+                artist: "沙漠丶倾城",
+                desc: "根据酷狗音乐链接内容，这是专辑同名歌曲",
+                album: "如果那天没有错过",
+                duration: "3:55",
+                src: "https://music.163.com/song/media/outer/url?id=2103329257.mp3",
+                cover: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            },
+            { 
+                id: 6,
+                title: "月下长安", 
+                artist: "沙漠丶倾城",
+                desc: "古典意境与现代情感的结合",
+                album: "古风精选",
+                duration: "4:20",
+                src: "https://music.163.com/song/media/outer/url?id=2103329257.mp3",
+                cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            }
+        ];
+
+        // 歌曲列表数据
+        const songListData = [
+            { 
+                title: "数星星等你", 
+                desc: "根据酷我音乐链接内容，这首歌曲收录在专辑《如果那天没有错过》中，发布于2025-12-31"
             },
             { 
                 title: "渡不出人间苦海", 
-                desc: "根据酷狗音乐链接内容，这首歌曲收录在专辑《伤感情歌 知心知伤》中",
-                lyrics: "人生苦海，难以渡过..."
+                desc: "根据酷狗音乐链接内容，这首歌曲收录在专辑《伤感情歌 知心知伤》中"
             },
             { 
-                title: "一起去看雪吧", 
-                desc: "根据酷狗音乐链接内容，这首歌曲是沙漠丶倾城的作品",
-                lyrics: "冬天的第一场雪，想和你一起去看..."
+                title: "我是你可有可无的人", 
+                desc: "深情诉说感情中的无奈与心酸"
+            },
+            { 
+                title: "爱而不得的那个人", 
+                desc: "表达无法拥有所爱之人的遗憾"
+            },
+            { 
+                title: "抉择", 
+                desc: "面对人生重要选择的内心挣扎"
+            },
+            { 
+                title: "雨季的念", 
+                desc: "雨季中思念与回忆的情感交织"
+            },
+            { 
+                title: "月下长安", 
+                desc: "古典意境与现代情感的结合"
+            },
+            { 
+                title: "再听已是曲中人", 
+                desc: "时光流转中对过往情感的追忆"
+            },
+            { 
+                title: "那天下雨了", 
+                desc: "根据酷我音乐链接内容，这首歌曲收录在专辑《如果那天没有错过》中"
+            },
+            { 
+                title: "不过尔尔", 
+                desc: "根据酷狗音乐链接内容，这首歌曲收录在专辑《如果那天没有错过》中"
             },
             { 
                 title: "我以为我能忘", 
-                desc: "根据酷狗音乐链接内容，这首歌曲收录在专辑《如果那天没有错过》中",
-                lyrics: "我以为时间能冲淡一切..."
+                desc: "根据酷狗音乐链接内容，这首歌曲收录在专辑《如果那天没有错过》中"
             },
             { 
-                title: "如果那天没有错过", 
-                desc: "根据酷狗音乐链接内容，这是专辑同名歌曲",
-                lyrics: "如果那天我们没有错过..."
+                title: "如果没有如果", 
+                desc: "根据酷狗音乐和酷我音乐链接内容，这首歌曲收录在专辑《如果那天没有错过》中"
             }
         ];
-        
+
+        // 播放器状态
         let currentSongIndex = 0;
         let isPlaying = false;
+        let audio = new Audio();
+        let currentTime = 0;
+        let totalTime = 0;
         
+        // DOM元素
         const playBtn = document.getElementById('playBtn');
         const playIcon = document.getElementById('playIcon');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const nowPlaying = document.getElementById('nowPlaying');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+        const currentSongTitle = document.getElementById('currentSongTitle');
+        const currentArtistName = document.getElementById('currentArtistName');
+        const currentSongDesc = document.getElementById('currentSongDesc');
+        const albumArt = document.getElementById('albumArt');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const playlistEl = document.getElementById('playlist');
+        const songListEl = document.getElementById('songList');
         
-        function updateNowPlaying() {
-            nowPlaying.textContent = `${isPlaying ? '正在播放' : '准备播放'}: 《${songs[currentSongIndex].title}》`;
+        // 初始化播放器
+        function initPlayer() {
+            // 设置第一首歌
+            loadSong(currentSongIndex);
+            
+            // 创建播放列表
+            createPlaylist();
+            
+            // 创建歌曲列表
+            createSongList();
+            
+            // 设置音频事件监听器
+            audio.addEventListener('loadedmetadata', function() {
+                totalTime = audio.duration;
+                totalTimeEl.textContent = formatTime(totalTime);
+            });
+            
+            audio.addEventListener('timeupdate', updateProgress);
+            audio.addEventListener('ended', nextSong);
+            
+            // 设置音量
+            audio.volume = volumeSlider.value / 100;
+            
+            // 更新播放器信息
+            updatePlayerInfo();
         }
         
-        playBtn.addEventListener('click', function() {
-            isPlaying = !isPlaying;
-            if (isPlaying) {
-                playIcon.classList.remove('fa-play');
-                playIcon.classList.add('fa-pause');
-                nowPlaying.innerHTML = `正在播放: 《${songs[currentSongIndex].title}》<br><small>${songs[currentSongIndex].desc}</small>`;
-            } else {
-                playIcon.classList.remove('fa-pause');
-                playIcon.classList.add('fa-play');
-                nowPlaying.innerHTML = `已暂停: 《${songs[currentSongIndex].title}》`;
+        // 加载歌曲
+        function loadSong(index) {
+            const song = songs[index];
+            audio.src = song.src;
+            currentSongTitle.textContent = song.title;
+            currentArtistName.textContent = song.artist;
+            currentSongDesc.textContent = `专辑: 《${song.album}》`;
+            albumArt.src = song.cover;
+            
+            // 高亮播放列表中的当前歌曲
+            const playlistItems = document.querySelectorAll('.playlist-item');
+            playlistItems.forEach(item => item.classList.remove('active'));
+            if (playlistItems[index]) {
+                playlistItems[index].classList.add('active');
             }
-        });
+        }
         
-        prevBtn.addEventListener('click', function() {
-            currentSongIndex--;
-            if (currentSongIndex < 0) {
-                currentSongIndex = songs.length - 1;
+        // 创建播放列表
+        function createPlaylist() {
+            playlistEl.innerHTML = '';
+            
+            songs.forEach((song, index) => {
+                const playlistItem = document.createElement('div');
+                playlistItem.className = 'playlist-item';
+                if (index === currentSongIndex) {
+                    playlistItem.classList.add('active');
+                }
+                
+                playlistItem.innerHTML = `
+                    <div class="playlist-item-index">${index + 1}</div>
+                    <div class="playlist-item-info">
+                        <div class="playlist-item-title">${song.title}</div>
+                        <div class="playlist-item-duration">${song.duration}</div>
+                    </div>
+                `;
+                
+                playlistItem.addEventListener('click', () => {
+                    playSong(index);
+                });
+                
+                playlistEl.appendChild(playlistItem);
+            });
+        }
+        
+        // 创建歌曲列表
+        function createSongList() {
+            songListEl.innerHTML = '';
+            
+            songListData.forEach((song, index) => {
+                const songItem = document.createElement('div');
+                songItem.className = 'song-item';
+                if (index === 0) {
+                    songItem.classList.add('song-from-link');
+                }
+                
+                songItem.innerHTML = `
+                    <div class="song-title">《${song.title}》</div>
+                    <div class="song-desc">${song.desc}</div>
+                `;
+                
+                songItem.addEventListener('click', () => {
+                    // 检查歌曲是否在播放列表中
+                    const songIndex = songs.findIndex(s => s.title === song.title);
+                    if (songIndex !== -1) {
+                        playSong(songIndex);
+                    } else {
+                        // 如果不在播放列表中，加载第一首歌曲
+                        playSong(0);
+                    }
+                    
+                    // 高亮点击的歌曲
+                    const songItems = document.querySelectorAll('.song-item');
+                    songItems.forEach(item => item.classList.remove('active'));
+                    songItem.classList.add('active');
+                });
+                
+                songListEl.appendChild(songItem);
+            });
+        }
+        
+        // 播放歌曲
+        function playSong(index) {
+            if (index === currentSongIndex && isPlaying) {
+                pauseSong();
+                return;
             }
+            
+            if (index !== currentSongIndex) {
+                currentSongIndex = index;
+                loadSong(currentSongIndex);
+            }
+            
             isPlaying = true;
+            audio.play();
             playIcon.classList.remove('fa-play');
             playIcon.classList.add('fa-pause');
-            updateNowPlaying();
-        });
+            
+            updatePlayerInfo();
+        }
         
-        nextBtn.addEventListener('click', function() {
+        // 播放/暂停
+        function togglePlay() {
+            if (isPlaying) {
+                pauseSong();
+            } else {
+                playSong(currentSongIndex);
+            }
+        }
+        
+        // 暂停歌曲
+        function pauseSong() {
+            isPlaying = false;
+            audio.pause();
+            playIcon.classList.remove('fa-pause');
+            playIcon.classList.add('fa-play');
+        }
+        
+        // 下一首
+        function nextSong() {
             currentSongIndex++;
             if (currentSongIndex >= songs.length) {
                 currentSongIndex = 0;
             }
+            loadSong(currentSongIndex);
+            if (isPlaying) {
+                audio.play();
+            }
+        }
+        
+        // 上一首
+        function prevSong() {
+            currentSongIndex--;
+            if (currentSongIndex < 0) {
+                currentSongIndex = songs.length - 1;
+            }
+            loadSong(currentSongIndex);
+            if (isPlaying) {
+                audio.play();
+            }
+        }
+        
+        // 更新进度条
+        function updateProgress() {
+            const { currentTime: ct, duration } = audio;
+            const progressPercent = (ct / duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            currentTimeEl.textContent = formatTime(ct);
+            
+            if (isNaN(duration)) {
+                totalTimeEl.textContent = '0:00';
+            } else {
+                totalTimeEl.textContent = formatTime(duration);
+            }
+        }
+        
+        // 设置进度
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audio.duration;
+            
+            audio.currentTime = (clickX / width) * duration;
+        }
+        
+        // 设置音量
+        function setVolume() {
+            audio.volume = this.value / 100;
+        }
+        
+        // 格式化时间
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+        
+        // 更新播放器信息
+        function updatePlayerInfo() {
+            const song = songs[currentSongIndex];
+            document.getElementById('nowPlaying')?.textContent = isPlaying ? 
+                `正在播放: 《${song.title}》` : 
+                `准备播放: 《${song.title}》`;
+        }
+        
+        // 事件监听器
+        playBtn.addEventListener('click', togglePlay);
+        prevBtn.addEventListener('click', prevSong);
+        nextBtn.addEventListener('click', nextSong);
+        audio.addEventListener('play', () => {
             isPlaying = true;
             playIcon.classList.remove('fa-play');
             playIcon.classList.add('fa-pause');
-            updateNowPlaying();
+            updatePlayerInfo();
         });
-        
-        updateNowPlaying();
-        
-        const songItems = document.querySelectorAll('.song-item');
-        songItems.forEach((item, index) => {
-            item.addEventListener('click', function() {
-                songItems.forEach(song => {
-                    song.style.background = '#f8f9fa';
-                    song.style.borderLeft = '4px solid #3498db';
-                });
-                
-                this.style.background = '#e3f2fd';
-                this.style.borderLeft = '4px solid #e74c3c';
-                
-                const songTitle = this.querySelector('.song-title').textContent.replace(/《|》/g, '');
-                const songIndex = songs.findIndex(song => song.title === songTitle);
-                
-                if (songIndex !== -1) {
-                    currentSongIndex = songIndex;
-                    isPlaying = true;
-                    playIcon.classList.remove('fa-play');
-                    playIcon.classList.add('fa-pause');
-                    nowPlaying.innerHTML = `正在播放: 《${songs[currentSongIndex].title}》<br><small>${songs[currentSongIndex].desc}</small>`;
-                }
-            });
+        audio.addEventListener('pause', () => {
+            isPlaying = false;
+            playIcon.classList.remove('fa-pause');
+            playIcon.classList.add('fa-play');
+            updatePlayerInfo();
         });
+        progressContainer.addEventListener('click', setProgress);
+        volumeSlider.addEventListener('input', setVolume);
         
+        // 初始化
+        window.addEventListener('DOMContentLoaded', initPlayer);
+        
+        // 平台链接点击追踪
         const platformLinks = document.querySelectorAll('.platform');
         platformLinks.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
                 const platformName = this.querySelector('h4').textContent;
-                console.log(`用户点击了${platformName}平台链接`);
+                const url = this.getAttribute('href');
+                console.log(`用户点击了${platformName}平台链接，即将跳转到: ${url}`);
+                
+                // 在实际应用中，这里应该直接跳转
+                // 为了演示，我们使用确认对话框
+                if (confirm(`即将跳转到${platformName}，是否继续？`)) {
+                    window.open(url, '_blank');
+                }
             });
         });
         
@@ -694,7 +1065,7 @@
         console.log("1. 音乐人信息展示");
         console.log("2. 代表作品列表");
         console.log("3. 音乐平台链接");
-        console.log("4. 模拟音乐播放器");
+        console.log("4. 功能完整的音乐播放器");
         console.log("5. 响应式设计适配移动端");
     </script>
 </body>
